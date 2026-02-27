@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Junyu (Jenny) Nan — Robotics PhD @ CMU</title>
+  <meta name="description" content="Junyu (Jenny) Nan — PhD in Robotics at Carnegie Mellon University. Research in 3D Vision, Deep Learning, and Robot Manipulation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --color-bg: #fafaf9;
+      --color-surface: #ffffff;
+      --color-text: #1c1917;
+      --color-text-secondary: #57534e;
+      --color-accent: #b91c1c;
+      --color-accent-light: #fef2f2;
+      --color-border: #e7e5e4;
+      --color-tag-bg: #f5f5f4;
+      --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --font-serif: 'Source Serif 4', Georgia, serif;
+      --max-width: 820px;
+    }
+
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--color-accent); text-decoration: none; transition: opacity .15s; }
+    a:hover { opacity: .75; }
+
+    /* ── Nav ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,249,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: .75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-name { font-weight: 600; font-size: .95rem; color: var(--color-text); }
+    .nav-links { display: flex; gap: 1.5rem; }
+    .nav-links a { color: var(--color-text-secondary); font-size: .85rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--color-accent); opacity: 1; }
+
+    /* ── Hero ── */
+    .hero {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 4rem 1.5rem 3rem;
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+    .hero-photo {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 3px solid var(--color-border);
+    }
+    .hero-text h1 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 600;
+      line-height: 1.25;
+    }
+    .hero-text .subtitle {
+      color: var(--color-text-secondary);
+      font-size: 1.05rem;
+      margin-top: .35rem;
+    }
+    .hero-text .bio {
+      margin-top: 1rem;
+      color: var(--color-text-secondary);
+      font-size: .93rem;
+      line-height: 1.75;
+    }
+    .hero-links {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+    }
+    .hero-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      padding: .4rem .9rem;
+      border-radius: 6px;
+      font-size: .82rem;
+      font-weight: 500;
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      background: var(--color-surface);
+      transition: border-color .15s, background .15s;
+    }
+    .hero-links a:hover { border-color: var(--color-accent); background: var(--color-accent-light); color: var(--color-accent); opacity: 1; }
+    .hero-links svg { width: 15px; height: 15px; }
+
+    /* ── Sections ── */
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.5rem; }
+
+    section { padding: 2.5rem 0; }
+    section + section { border-top: 1px solid var(--color-border); }
+
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      color: var(--color-text);
+    }
+
+    /* ── Publications ── */
+    .pub-list { list-style: none; }
+    .pub-item {
+      display: flex;
+      gap: 1.1rem;
+      padding: 1rem 1.15rem;
+      margin-bottom: .85rem;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    .pub-item:hover { border-color: #d6d3d1; box-shadow: 0 2px 8px rgba(0,0,0,.04); }
+    .pub-thumb {
+      width: 180px;
+      min-width: 180px;
+      height: 110px;
+      object-fit: contain;
+      border-radius: 6px;
+      border: 1px solid var(--color-border);
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+    .pub-body { flex: 1; min-width: 0; }
+    .pub-title-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: .5rem;
+      margin-bottom: .25rem;
+    }
+    .pub-title {
+      font-weight: 600;
+      font-size: .92rem;
+      line-height: 1.4;
+      color: var(--color-text);
+    }
+    .pub-venue-badge {
+      flex-shrink: 0;
+      font-size: .73rem;
+      font-weight: 500;
+      color: var(--color-accent);
+      background: var(--color-accent-light);
+      padding: .15rem .55rem;
+      border-radius: 4px;
+      white-space: nowrap;
+      line-height: 1.5;
+    }
+    .pub-authors {
+      font-size: .83rem;
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+      margin-bottom: .4rem;
+    }
+    .pub-authors strong { color: var(--color-text); font-weight: 600; }
+    .pub-links { display: flex; gap: .45rem; flex-wrap: wrap; }
+    .pub-links a {
+      font-size: .76rem;
+      font-weight: 500;
+      padding: .18rem .5rem;
+      border-radius: 4px;
+      background: var(--color-tag-bg);
+      color: var(--color-accent);
+      border: 1px solid var(--color-border);
+      transition: background .15s, border-color .15s;
+    }
+    .pub-links a:hover { background: var(--color-accent-light); border-color: var(--color-accent); opacity: 1; }
+
+    /* ── Education ── */
+    .edu-item { margin-bottom: 1.25rem; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: .25rem; }
+    .edu-school { font-weight: 600; font-size: .95rem; }
+    .edu-location { color: var(--color-text-secondary); font-size: .85rem; }
+    .edu-degree { font-size: .9rem; color: var(--color-text-secondary); margin-top: .15rem; }
+    .edu-date { font-size: .82rem; color: var(--color-text-secondary); }
+    .edu-note { font-size: .85rem; color: var(--color-text-secondary); margin-top: .2rem; }
+
+    /* ── Footer ── */
+    footer {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+      font-size: .82rem;
+      color: var(--color-text-secondary);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .hero { flex-direction: column; align-items: center; text-align: center; padding-top: 2.5rem; }
+      .hero-photo { width: 130px; height: 130px; }
+      .hero-links { justify-content: center; }
+      .edu-header { flex-direction: column; }
+      .nav-links { gap: 1rem; }
+      .pub-item { flex-direction: column; }
+      .pub-thumb { width: 100%; min-width: 0; height: 160px; }
+      .pub-title-row { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">Jenny Nan</span>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#publications">Publications</a>
+      <a href="#education">Education</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ── -->
+<header class="hero" id="about">
+  <img src="1753204658625.jpeg" alt="Junyu (Jenny) Nan" class="hero-photo">
+  <div class="hero-text">
+    <h1>Junyu (Jenny) Nan</h1>
+    <div class="subtitle">PhD in Robotics &middot; Carnegie Mellon University</div>
+    <p class="bio">
+      Robotics and 3D perception researcher on grounding world models for robot manipulation. 
+      Research interns at Toyota Research Institute, and the Boston Dynamics AI Institute / Robotics &amp; AI Institute.
+    </p>
+    <div class="hero-links">
+      <a href="mailto:jnan1@andrew.cmu.edu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        jnan1@andrew.cmu.edu
+      </a>
+      <a href="mailto:jnan@theaiinstitute.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        jnan@theaiinstitute.com
+      </a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- ── Publications ── -->
+  <section id="publications">
+    <h2 class="section-title">Publications</h2>
+    <ul class="pub-list">
+
+      <li class="pub-item">
+        <img src="thumbs/NovaPlan.png" alt="NovaPlan figure" class="pub-thumb">
+        <div class="pub-body">
+          <div class="pub-title-row">
+            <span class="pub-title">NovaPlan: Zero-Shot Long-Horizon Manipulation via Closed-Loop Video Language Planning</span>
+            <span class="pub-venue-badge">RSS 2026 (under review)</span>
+          </div>
+          <div class="pub-authors">J. Fu, <strong>J. Nan</strong>, L. Sun, H. Li, J. Qian, J. L. Barry, K. Kitani, and G. Konidaris</div>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2602.20119" target="_blank">arXiv</a>
+            <a href="https://nova-plan.github.io/" target="_blank">Website</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="pub-item">
+        <img src="thumbs/PLOP.png" alt="PLOP figure" class="pub-thumb">
+        <div class="pub-body">
+          <div class="pub-title-row">
+            <span class="pub-title">PLOP: Particle Filtering for Learning Object Physics from Robot Interaction Videos</span>
+            <span class="pub-venue-badge">ICRA 2026</span>
+          </div>
+          <div class="pub-authors"><strong>J. Nan</strong>, S. Zakharov, and K. Kitani</div>
+          <div class="pub-links">
+            <a href="Jenny_ICRA_PLOP.pdf" target="_blank">PDF</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="pub-item">
+        <img src="thumbs/Interaction_Constraint.png" alt="Set Correspondences figure" class="pub-thumb">
+        <div class="pub-body">
+          <div class="pub-title-row">
+            <span class="pub-title">Learning Interaction Constraints for Robot Manipulation via Set Correspondences</span>
+            <span class="pub-venue-badge">ICRA 2024</span>
+          </div>
+          <div class="pub-authors"><strong>J. Nan</strong>, J. Hodgins, and B. Okorn</div>
+          <div class="pub-links">
+            <a href="https://ieeexplore.ieee.org/document/10611031" target="_blank">IEEE</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="pub-item">
+        <img src="thumbs/s2net.png" alt="S2Net figure" class="pub-thumb">
+        <div class="pub-body">
+          <div class="pub-title-row">
+            <span class="pub-title">S2Net: Stochastic Sequential Pointcloud Forecasting</span>
+            <span class="pub-venue-badge">ECCV 2022</span>
+          </div>
+          <div class="pub-authors">X. Weng, <strong>J. Nan</strong>, K.-H. Lee, R. McAllister, A. Gaidon, N. Rhinehart, and K. Kitani</div>
+          <div class="pub-links">
+            <a href="https://link.springer.com/chapter/10.1007/978-3-031-20047-2_31" target="_blank">Springer</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="pub-item">
+        <img src="thumbs/FlowVerify.png" alt="CoRL 2019 figure" class="pub-thumb">
+        <div class="pub-body">
+          <div class="pub-title-row">
+            <span class="pub-title">Combining Deep Learning and Verification for Precise Object Instance Detection</span>
+            <span class="pub-venue-badge">CoRL 2019</span>
+          </div>
+          <div class="pub-authors">S. Ancha*, <strong>J. Nan*</strong>, and D. Held</div>
+          <div class="pub-links">
+            <a href="https://proceedings.mlr.press/v100/ancha20a.html" target="_blank">PMLR</a>
+          </div>
+        </div>
+      </li>
+
+      <li class="pub-item">
+        <img src="thumbs/CPG.png" alt="ICRA 2018 figure" class="pub-thumb">
+        <div class="pub-body">
+          <div class="pub-title-row">
+            <span class="pub-title">Proprioceptive-Inertial Autonomous Locomotion for Articulated Robots</span>
+            <span class="pub-venue-badge">ICRA 2018</span>
+          </div>
+          <div class="pub-authors">F. Ruscelli, G. Sartoretti, <strong>J. Nan</strong>, Z. Feng, M. Travers, and H. Choset</div>
+          <div class="pub-links">
+            <a href="https://ieeexplore.ieee.org/document/8462885" target="_blank">IEEE</a>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+  </section>
+
+  <!-- ── Education ── -->
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-school">Carnegie Mellon University</span>
+        <span class="edu-location">Pittsburgh, PA</span>
+      </div>
+      <div class="edu-header">
+        <span class="edu-degree">PhD in Robotics &mdash; 3D Vision, Robot Perception &amp; Control</span>
+        <span class="edu-date">Sep 2021 &ndash; Aug 2026 (Expected)</span>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-school">Carnegie Mellon University</span>
+        <span class="edu-location">Pittsburgh, PA</span>
+      </div>
+      <div class="edu-header">
+        <span class="edu-degree">M.S. in Robotics &mdash; GPA 4.0/4.0</span>
+        <span class="edu-date">Sep 2018 &ndash; Dec 2019</span>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-header">
+        <span class="edu-school">Carnegie Mellon University</span>
+        <span class="edu-location">Pittsburgh, PA</span>
+      </div>
+      <div class="edu-header">
+        <span class="edu-degree">B.S. in Computer Science, Additional Major in Robotics &mdash; GPA 3.93/4.0</span>
+        <span class="edu-date">Aug 2015 &ndash; May 2018</span>
+      </div>
+      <p class="edu-note">Completed bachelor&rsquo;s degree in 3 years</p>
+    </div>
+  </section>
+
+</div>
+
+<!-- ── Footer ── -->
+<footer>
+  <p>&copy; 2026 Junyu (Jenny) Nan &middot; Built for GitHub Pages</p>
+</footer>
+
+</body>
+</html>
